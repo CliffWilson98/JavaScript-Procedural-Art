@@ -1,18 +1,13 @@
-window.onload = function() {
-    this.drawCirclesOnCanvas(this.document.getElementById("imageCanvas"));
-    this.drawCirclesOnCanvas(this.document.getElementById("imageCanvas2"));
-    let ctx1 = this.document.getElementById("imageCanvas").getContext("2d");
-    let ctx2 = this.document.getElementById("imageCanvas2").getContext("2d");
-    this.blendTheTwoCanvases(ctx1, ctx2);
-}; 
+this.drawCirclesOnCanvas(this.document.getElementById("imageCanvas"));
+this.drawCirclesOnCanvas(this.document.getElementById("imageCanvas2"));
+this.blendTheTwoCanvases();
 
 function drawCirclesOnCanvas(canvas){
     var c = canvas;
     var ctx = c.getContext("2d");
 
-    // make 10 points
     let points = []
-    for (i = 0; i < 20; i ++){
+    for (i = 0; i < 40; i ++){
         points.push({x:Math.round(Math.random() * 400), y:Math.round(Math.random() * 400)})
     }
 
@@ -31,9 +26,14 @@ function drawCirclesOnCanvas(canvas){
     }
 }
 
-function blendTheTwoCanvases(ctx1, ctx2){
+function blendTheTwoCanvases(){
+    let ctx1 = this.document.getElementById("imageCanvas").getContext("2d");
+    let ctx2 = this.document.getElementById("imageCanvas2").getContext("2d");
+
     var blendCanvas = document.getElementById("blendCanvas");
     var ctx = blendCanvas.getContext("2d");
+
+    let blendAmount = document.getElementById("blendSlider").value
 
     let data1 = ctx1.getImageData(0, 0, 400, 400);
     let data2 = ctx2.getImageData(0, 0, 400, 400);
@@ -42,7 +42,7 @@ function blendTheTwoCanvases(ctx1, ctx2){
         for (i = 0; i < data1.data.length; i ++){
             let firstVal = data1.data[i];
             let secondVal = data2.data[i];
-            let result = ((firstVal * .8) + (secondVal * .2)) / 2;
+            let result = ((firstVal * blendAmount) + (secondVal * (1 - blendAmount)));
             data1.data[i] = result;
         }
     }
