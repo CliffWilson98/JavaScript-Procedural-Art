@@ -7,12 +7,13 @@ let ctx = c.getContext("2d");
 let activeModules = [];
 
 let pointMaker = new PointGenerator(10, c.width, c.height);
-let points = pointMaker.process();
 
-console.log(points);
+let gridPoints = new GridPointGenerator(2, c.width, c.height);
 
 let circles = new CircleGenerator(4);
-circles.render(points, ctx);
-// function processModules(){
+//TODO it is wasteful to call process every time
+circles.render(gridPoints.process(), ctx);
+circles.render(pointMaker.process(), ctx);
 
-// }
+let strands = new StrandGenerator(50, 20, 0);
+strands.render(gridPoints.process(), ctx);
