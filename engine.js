@@ -1,19 +1,37 @@
 let c = this.document.getElementById("imageCanvas")
 let ctx = c.getContext("2d");
 
-// ctx.fillStyle = "#FF0000";
-// ctx.fillRect(0, 0, c.width / 2, c.height / 2);
-
 let activeModules = [];
 
-let pointMaker = new PointGenerator(10, c.width, c.height);
+function addModule(module){
+    activeModules.push(module);
+}
 
-let gridPoints = new GridPointGenerator(2, c.width, c.height);
+function logModules(){
+    console.log(activeModules);
+}
 
-let circles = new CircleGenerator(4);
-//TODO it is wasteful to call process every time
-circles.render(gridPoints.process(), ctx);
-circles.render(pointMaker.process(), ctx);
+function emptyModules(){
+    activeModules = []
+}
 
-let strands = new StrandGenerator(50, 20, 0);
-strands.render(gridPoints.process(), ctx);
+//TODO need to test this with chaining a bunch of input together
+function processModules(){
+    if (activeModules.length != 0){
+        let result = activeModules[0].process();
+        console.log(result);
+
+        for (let i = 1; i < activeModules.length; i++){
+            if (typeof activeModules[i].process === 'function'){
+                result = activeModules[i].process(result);
+            }
+            else{
+                activeModules[i].render(result, ctx);
+            }
+        }
+    }
+    else{
+        console.log("no active modules")
+        ctx.clearRect(0, 0, c.width, c.height);
+    }
+}

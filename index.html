@@ -8,33 +8,27 @@
     <h1> Image Editor </h1>
 
     <div id="widgetList">
-      <button>Point Generator</button>
-      <button>Circles</button>
-      <button>Squares</button>
+      <button onclick="addModule(new PointGenerator(20, 400, 400))">Point Generator</button>
+      <button onclick="addModule(new GridPointGenerator(4, 400, 400))">Grid Points</button>
+      <button onclick="addModule(new CircleGenerator(2))">Circles</button>
+      <button onclick="addModule(new StrandGenerator(25, 25, 10))">Strands</button>
     </div>
+    <hr>
+    <button onclick="logModules()">Log Modules</button>
+    <hr>
+    <button onclick="emptyModules()">Clear All Modules</button>
+    <hr>
+    <button onclick="processModules()">Process</button>
 
     <hr>
 
     <canvas id="imageCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
-    <!-- <canvas id="imageCanvas2" width="400" height="400" style="border:1px solid #000000;"></canvas> -->
-
     <hr>
-
-    <!-- <div id="mydiv">
-    <div id="header">
-    <canvas id="blendCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
-    <div id="mydivheader">Output</div>
-    </div>
-    <p>Blend Slider</p>
-    <input type="range" min="0" max="1" value=".5" step="0.01" class="slider" id="blendSlider" onchange="blendTheTwoCanvases()">
-  </div>  -->
 
   <footer>
     <script src="widgets.js"></script>
     <script src="engine.js"></script>
     <script src="widgetSpawner.js"></script>
-    <!-- <script src="editor.js"></script> -->
-    <!-- <script src="drag.js"></script> -->
   </footer>
 
 </body>
