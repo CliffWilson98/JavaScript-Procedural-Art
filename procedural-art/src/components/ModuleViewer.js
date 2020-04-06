@@ -9,9 +9,11 @@ class ModuleViewer extends React.Component{
             <div>
             {this.props.modules.map(module =>(
                 <React.Fragment>
-                    <Module/>
+                    <Module type={module}/>
                 </React.Fragment>
             ))}
+            {/* <Module type="point"/>
+            <Module type="circle"/> */}
             </div>
         );
     }

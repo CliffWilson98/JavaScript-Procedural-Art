@@ -10,7 +10,7 @@ class App extends React.Component{
     this.clickAmount = 0;
     this.colors = ["#FF0000", "#11FFFF", "#4F8888"]
     this.state = {
-      activeModules: ['hello', 'world']
+      activeModules: ['point', 'circle', 'test']
     }
   }
 
