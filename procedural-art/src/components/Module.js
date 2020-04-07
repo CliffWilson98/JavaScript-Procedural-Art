@@ -1,16 +1,19 @@
 import React from 'react';
+import { createSecurePair } from 'tls';
 
 class Module extends React.Component{
 
-    render(){
-
-        //TODO find out how to not repeate moduleStyle
-        //TODO need to make sliders actually do something
-        const moduleStyle = {
+    constructor(props){
+        super(props)
+        this.moduleStyle = {
             display: 'inline-block',
             outline: '1px solid black',
             padding: '10px'
         };
+    }
+
+    render(){
+        //TODO need to make sliders actually do something
 
         if (this.props.type == "point"){
             return this.pointGeneratorModule();
@@ -20,7 +23,7 @@ class Module extends React.Component{
         }
         else{
             return(
-                <div style={moduleStyle}>
+                <div style={this.moduleStyle}>
                     <h1>That module does not exist</h1>
                 </div>
             )
@@ -28,15 +31,10 @@ class Module extends React.Component{
     }
 
     pointGeneratorModule(){
-        const moduleStyle = {
-            display: 'inline-block',
-            outline: '1px solid black',
-            padding: '10px'
-        };
-
         return(
             <React.Fragment>
-                <div style={moduleStyle}>
+                <div style={this.moduleStyle}>
+                    <button>X</button>
                     <h1>Point Generator</h1>
                     <input type="range" step="1" min="1" max="100" value="25" className="slider" id="myRange"></input>
                 </div>
@@ -45,15 +43,10 @@ class Module extends React.Component{
     }
 
     circleModule(){
-        const moduleStyle = {
-            display: 'inline-block',
-            outline: '1px solid black',
-            padding: '10px'
-        };
-
         return(
             <React.Fragment>
-                <div style={moduleStyle}>
+                <div style={this.moduleStyle}>
+                    <button>X</button>
                     <h1>Circle Drawer</h1>
                     <h2>Number of Circles</h2>
                     <input type="range" min="1" max="100" value="50" className="slider" id="myRange"></input>
@@ -68,7 +61,6 @@ class Module extends React.Component{
         )
 
     }
-
 }
 
 export default Module;

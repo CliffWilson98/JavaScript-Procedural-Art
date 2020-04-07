@@ -15,6 +15,10 @@ function emptyModules(){
     activeModules = []
 }
 
+function testInEgine(){
+    console.log("this is inside of engine.js");
+}
+
 //TODO need to test this with chaining a bunch of input together
 function processModules(){
     if (activeModules.length != 0){
