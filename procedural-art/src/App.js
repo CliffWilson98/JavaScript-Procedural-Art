@@ -1,10 +1,10 @@
 import React from 'react';
 import ModuleAdder from './components/ModuleAdder.js'
 import ModuleViewer from './components/ModuleViewer.js'
+import TestComponent from './components/TestComponent.js'
 
 class App extends React.Component{
 
-  //TODO need to give each added element a key this is important for deletion
   constructor(props){
     super(props);
     this.id = 0;
@@ -12,11 +12,14 @@ class App extends React.Component{
       activeModules: []
     }
 
+    this.testArray = []
+
     this.addModule = this.addModule.bind(this)
     this.clearModules = this.clearModules.bind(this)
     this.removeModule = this.removeModule.bind(this)
+    this.testingArrayOfComponents = this.testingArrayOfComponents.bind(this)
+    this.processModules = this.processModules.bind(this);
   }
-
 
   buttonFunction(){
     let canvas = this.refs.canvas;
@@ -25,22 +28,26 @@ class App extends React.Component{
     ctx.fillRect(0, 0, 400, 400);
   }
 
-  addModule(moduleName){
+  addModule(moduleType){
     this.setState(prevState => ({
-        activeModules: [...prevState.activeModules, {key: this.id, name: moduleName}]
+        activeModules: [...prevState.activeModules, {key: this.id, type: moduleType}]
       }))
       this.id++;
   }
 
+  testingArrayOfComponents(comp){
+    console.log(comp.state)
+  }
+
   removeModule(key){
-    console.log("inside remove module")
-    console.log(this)
     let modules = this.state.activeModules
     for (let i = 0; i < modules.length; i ++){
       if (modules[i].key == key){
         modules.splice(i, 1)
       }
     }
+    console.log("about to set state, this is what the new module is ")
+    console.log(modules);
     this.setState(() => ({
         activeModules: modules
       }))
@@ -56,6 +63,13 @@ class App extends React.Component{
     console.log(this.state.activeModules);
   }
 
+  processModules(){
+    let modules = this.state.activeModules; 
+    for (let i =0; i < modules.length; i ++){
+      modules[i].module.process();
+    }
+  }
+
   render(){
     return (
       <React.Fragment>
@@ -64,7 +78,8 @@ class App extends React.Component{
         <button onClick={this.buttonFunction.bind(this)}>Change canvas color</button>
         <button onClick={this.clearModules.bind(this)}>Remove every module</button>
         <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
-        <button onClick={() => this.removeModule(1)}>testing new function</button>
+        <button onClick={this.processModules}>Process Every Active Module</button>
+        <TestComponent callThis = {this.testingArrayOfComponents}/>
         <hr></hr>
         <ModuleAdder buttonFunction={this.addModule}/>
         <hr></hr>
