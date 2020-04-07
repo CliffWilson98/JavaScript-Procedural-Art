@@ -12,8 +12,6 @@ class ModuleViewer extends React.Component{
                     <Module type={module}/>
                 </React.Fragment>
             ))}
-            {/* <Module type="point"/>
-            <Module type="circle"/> */}
             </div>
         );
     }

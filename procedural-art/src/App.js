@@ -1,7 +1,6 @@
 import React from 'react';
 import ModuleAdder from './components/ModuleAdder.js'
 import ModuleViewer from './components/ModuleViewer.js'
-import Module from './components/Module.js'
 
 class App extends React.Component{
 
@@ -12,6 +11,9 @@ class App extends React.Component{
     this.state = {
       activeModules: ['point', 'circle', 'test']
     }
+
+    this.addModule = this.addModule.bind(this)
+    this.clearModules = this.clearModules.bind(this)
   }
 
   buttonFunction(){
@@ -24,10 +26,20 @@ class App extends React.Component{
     this.clickAmount++;
   }
 
-  addModule(){
+  addModule(moduleName){
     this.setState(prevState => ({
-        activeModules: [...prevState.activeModules, "test"]
+        activeModules: [...prevState.activeModules, moduleName]
       }))
+  }
+
+  clearModules(){
+    this.setState(prevState => ({
+        activeModules: []
+      }))
+  }
+
+  logModules(){
+    console.log(this.state.activeModules);
   }
 
   getFillStyle(){
@@ -39,10 +51,11 @@ class App extends React.Component{
       <React.Fragment>
         <h1> Image Generator Prototype </h1>
         <canvas ref='canvas' width={400} height={400}></canvas>
-        <button onClick={this.buttonFunction.bind(this)}>I change the canvas</button>
-        <button onClick={this.addModule.bind(this)}>I add a module</button>
+        <button onClick={this.buttonFunction.bind(this)}>Change canvas color</button>
+        <button onClick={this.clearModules.bind(this)}>Remove every module</button>
+        <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
         <hr></hr>
-        <ModuleAdder/>
+        <ModuleAdder buttonFunction={this.addModule}/>
         <hr></hr>
         <ModuleViewer modules={this.state.activeModules}/>
       </React.Fragment>
