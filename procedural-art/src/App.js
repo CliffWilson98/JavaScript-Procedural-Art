@@ -1,7 +1,6 @@
 import React from 'react';
 import ModuleAdder from './components/ModuleAdder.js'
 import ModuleViewer from './components/ModuleViewer.js'
-import TestComponent from './components/TestComponent.js'
 
 class App extends React.Component{
 
@@ -79,7 +78,6 @@ class App extends React.Component{
         <button onClick={this.clearModules.bind(this)}>Remove every module</button>
         <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
         <button onClick={this.processModules}>Process Every Active Module</button>
-        <TestComponent callThis = {this.testingArrayOfComponents}/>
         <hr></hr>
         <ModuleAdder buttonFunction={this.addModule}/>
         <hr></hr>

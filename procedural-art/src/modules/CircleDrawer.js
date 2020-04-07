@@ -14,16 +14,6 @@ class CircleDrawer extends BaseModule{
         this.registerModule(this.props.moduleArray, this.props.moduleKey, this);
     }
 
-    //TODO find a way to not repeat this function
-    // registerModule(){
-    //     let array = this.props.moduleArray;
-    //     for (let i = 0; i < array.length; i ++){
-    //         if (array[i].key == this.props.moduleKey){
-    //             array[i].module = this;
-    //         }
-    //     }
-    // }
-
     render(){
         return(
             <React.Fragment>
