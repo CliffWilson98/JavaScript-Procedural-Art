@@ -4,31 +4,45 @@ import ModuleViewer from './components/ModuleViewer.js'
 
 class App extends React.Component{
 
+  //TODO need to give each added element a key this is important for deletion
   constructor(props){
     super(props);
-    this.clickAmount = 0;
-    this.colors = ["#FF0000", "#11FFFF", "#4F8888"]
+    this.id = 0;
     this.state = {
-      activeModules: ['point', 'circle', 'test']
+      activeModules: []
     }
 
     this.addModule = this.addModule.bind(this)
     this.clearModules = this.clearModules.bind(this)
+    this.removeModule = this.removeModule.bind(this)
   }
+
 
   buttonFunction(){
     let canvas = this.refs.canvas;
     let ctx = canvas.getContext('2d');
-    console.log(this.colors[1]);
-    ctx.fillStyle = this.getFillStyle();
+    ctx.fillStyle = "#ABABAB"
     ctx.fillRect(0, 0, 400, 400);
-    console.log(canvas.getContext('2d'))
-    this.clickAmount++;
   }
 
   addModule(moduleName){
     this.setState(prevState => ({
-        activeModules: [...prevState.activeModules, moduleName]
+        activeModules: [...prevState.activeModules, {key: this.id, name: moduleName}]
+      }))
+      this.id++;
+  }
+
+  removeModule(key){
+    console.log("inside remove module")
+    console.log(this)
+    let modules = this.state.activeModules
+    for (let i = 0; i < modules.length; i ++){
+      if (modules[i].key == key){
+        modules.splice(i, 1)
+      }
+    }
+    this.setState(() => ({
+        activeModules: modules
       }))
   }
 
@@ -42,10 +56,6 @@ class App extends React.Component{
     console.log(this.state.activeModules);
   }
 
-  getFillStyle(){
-    return this.colors[this.clickAmount % 3];
-  }
-
   render(){
     return (
       <React.Fragment>
@@ -54,10 +64,11 @@ class App extends React.Component{
         <button onClick={this.buttonFunction.bind(this)}>Change canvas color</button>
         <button onClick={this.clearModules.bind(this)}>Remove every module</button>
         <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
+        <button onClick={() => this.removeModule(1)}>testing new function</button>
         <hr></hr>
         <ModuleAdder buttonFunction={this.addModule}/>
         <hr></hr>
-        <ModuleViewer modules={this.state.activeModules}/>
+        <ModuleViewer modules={this.state.activeModules} removeFunction={this.removeModule}/>
       </React.Fragment>
     );
   }

@@ -3,6 +3,7 @@ import { createSecurePair } from 'tls';
 
 class Module extends React.Component{
 
+    //TODO make delete button into its own component
     constructor(props){
         super(props)
         this.moduleStyle = {
@@ -12,9 +13,12 @@ class Module extends React.Component{
         };
     }
 
+    deleteModule(number){
+        console.log("deleting: " + number);
+    }
+
     render(){
         //TODO need to make sliders actually do something
-
         if (this.props.type == "point"){
             return this.pointGeneratorModule();
         }
@@ -34,8 +38,8 @@ class Module extends React.Component{
         return(
             <React.Fragment>
                 <div style={this.moduleStyle}>
-                    <button>X</button>
-                    <h1>Point Generator</h1>
+                    <button onClick={() => this.props.removeFunction(this.props.moduleKey)}>X</button>
+                    <h1>Point Generator Index: {this.props.moduleKey}</h1>
                     <input type="range" step="1" min="1" max="100" value="25" className="slider" id="myRange"></input>
                 </div>
             </React.Fragment>
@@ -46,8 +50,8 @@ class Module extends React.Component{
         return(
             <React.Fragment>
                 <div style={this.moduleStyle}>
-                    <button>X</button>
-                    <h1>Circle Drawer</h1>
+                    <button onClick={() => this.props.removeFunction(this.props.moduleKey)}>X</button>
+                    <h1>Circle Drawer Index: {this.props.moduleKey}</h1>
                     <h2>Number of Circles</h2>
                     <input type="range" min="1" max="100" value="50" className="slider" id="myRange"></input>
                     <h3>Gradient Color 1</h3>

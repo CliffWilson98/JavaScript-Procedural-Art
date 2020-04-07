@@ -7,9 +7,9 @@ class ModuleViewer extends React.Component{
         console.log("logging modules " + this.props.modules)
         return(
             <div>
-            {this.props.modules.map(module =>(
+            {this.props.modules.map((module) =>(
                 <React.Fragment>
-                    <Module type={module}/>
+                    <Module type={module.name} moduleKey={module.key} removeFunction={this.props.removeFunction}/>
                 </React.Fragment>
             ))}
             </div>
