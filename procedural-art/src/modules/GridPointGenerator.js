@@ -1,13 +1,13 @@
 import React from 'react';
 import BaseModule from './BaseModule'
 
-class PointGenerator extends BaseModule{
+class GridPointGenerator extends BaseModule{
 
     constructor(props){
         super(props);
         this.process = this.process.bind(this);
         this.state = {
-            points: 75
+            points: 75,
         }
         this.changePoints = this.changePoints.bind(this);
     }
@@ -25,23 +25,27 @@ class PointGenerator extends BaseModule{
             <React.Fragment>
                 <div style={this.moduleStyle}>
                     <button onClick={() => this.props.removeFunction(this.props.moduleKey)}>X</button>
-                    <h1>Point Generator Index: {this.props.moduleKey} Type: {this.type}</h1>
-                    <h2>Number of points</h2>
-                    <input type="range" step="1" min="1" max="100" onChange={this.changePoints} value={this.state.points} className="slider" id="myRange"></input>
+                    <h1>Grid Point Generator Index: {this.props.moduleKey} Type: {this.type}</h1>
+                    <h2>Point Density</h2>
+                    <input type="range" step="1" min="1" max="25" onChange={this.changePoints} value={this.state.points} className="slider" id="myRange"></input>
                 </div>
             </React.Fragment>
         );
     }
 
     process(){
-        let pointArray = [];
-        for (let i = 0; i < this.state.points; i++){
-            let x = Math.round(Math.random() * 400);
-            let y = Math.round(Math.random() * 400);
-            pointArray.push({x: x, y: y});
+        let pointGrid = [];
+        let points = this.state.points;
+        let pointSpacingX = 400 / points
+        let pointSpacingY = 400 / points
+
+        for (let x = 0; x <= points; x ++){
+            for (let y = 0; y <= points; y ++){
+                pointGrid.push({x: x * pointSpacingX, y : y * pointSpacingY});
+            }
         }
-        return pointArray;
+        return pointGrid;
     }
 }
 
-export default PointGenerator;
+export default GridPointGenerator;

@@ -2,6 +2,8 @@ import React from 'react';
 import ModuleAdder from './components/ModuleAdder.js'
 import ModuleViewer from './components/ModuleViewer.js'
 
+//TODO MAJOR BUG: whenever deleting a module, all modules that come after it are 
+//reset to their default values. This is because Javascript re creates the object when it is put into a new index.
 class App extends React.Component{
 
   constructor(props){
@@ -63,10 +65,16 @@ class App extends React.Component{
   }
 
   processModules(){
+    let canvas = this.refs.canvas;
+    let ctx = canvas.getContext('2d');
+    ctx.fillStyle = "#ABABAB"
+    ctx.fillRect(0, 0, 400, 400);
+
     let modules = this.state.activeModules; 
-    for (let i =0; i < modules.length; i ++){
-      modules[i].module.process();
-    }
+    modules[1].module.process(modules[0].module.process(), ctx);
+    // for (let i =0; i < modules.length; i ++){
+    //   modules[i].module.process();
+    // }
   }
 
   render(){
