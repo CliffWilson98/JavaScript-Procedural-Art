@@ -71,10 +71,20 @@ class App extends React.Component{
     ctx.fillRect(0, 0, 400, 400);
 
     let modules = this.state.activeModules; 
-    modules[1].module.process(modules[0].module.process(), ctx);
-    // for (let i =0; i < modules.length; i ++){
-    //   modules[i].module.process();
-    // }
+    console.log(modules)
+    let output = null;
+
+    if(modules.length != 0){
+      let output = modules[0].module.process()
+
+      for (let i=1; i < modules.length; i ++){
+        output = modules[i].module.process(output);
+      }
+
+      console.log(output);
+      //TODO need to add a check for if this is valid image data or not
+      ctx.putImageData(output, 0, 0);
+    }
   }
 
   render(){

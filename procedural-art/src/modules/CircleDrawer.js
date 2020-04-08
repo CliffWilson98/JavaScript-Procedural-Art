@@ -54,9 +54,14 @@ class CircleDrawer extends BaseModule{
         );
     }
 
-    //TODO make this not depend on the canvas context
-    process(points, ctx){
-        console.log("in circle drawer process")
+    process(points){
+        let c = document.createElement('canvas');
+        c.width = 400;
+        c.height = 400;
+        let ctx = c.getContext('2d');
+
+        console.log("in process");
+
         for (let i = 0; i < points.length; i++){
             let point = points[i];
             let gradient = ctx.createRadialGradient(point.x, point.y, 20, point.x + 20, point.y + 20, 2 * Math.PI);
@@ -68,6 +73,8 @@ class CircleDrawer extends BaseModule{
             ctx.arc(point.x, point.y, 20, 0, 2 * Math.PI);
             ctx.fill();
         }
+
+        return ctx.getImageData(0, 0, c.width, c.height)
     }
 }
 
