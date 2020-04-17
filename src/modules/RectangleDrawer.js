@@ -16,28 +16,11 @@ class RectangleDrawer extends BaseModule{
 
         this.process = this.process.bind(this);
         this.registerModule = this.registerModule.bind(this)
-
-        this.updateGradientOne = this.updateGradientOne.bind(this);
-        this.updateGradientTwo = this.updateGradientTwo.bind(this);
-        this.updateGradientRatio = this.updateGradientRatio.bind(this);
         this.updateValues = this.updateValues.bind(this);
     }
 
     componentDidMount(){
         this.registerModule(this.props.moduleArray, this.props.moduleKey, this);
-    }
-
-    //TODO find a way to combine these two methods
-    updateGradientOne(event){
-        this.setState({gradient1: event.target.value});
-    }
-
-    updateGradientTwo(event){
-        this.setState({gradient2: event.target.value});
-    }
-
-    updateGradientRatio(event){
-        this.setState({ratio: event.target.value});
     }
 
     updateValues(event){
@@ -56,10 +39,10 @@ class RectangleDrawer extends BaseModule{
                     <h3>Height</h3>
                     <input type="range" step="1" min="1" max="50" onChange={this.updateValues} value={this.state.height} className="height" id="height"></input>
                     <h3>Gradient Color 1</h3>
-                    <input type="color" value={this.state.gradient1} onChange={this.updateGradientOne}></input>
-                    <input type="range" step=".01" min="0" max="1" onChange={this.updateGradientRatio} value={this.state.points} className="slider" id="myRange"></input>
+                    <input type="color" value={this.state.gradient1} onChange={this.updateValues} id="gradient1"></input>
+                    <input type="range" step=".01" min="0" max="1" onChange={this.updateValues} value={this.state.points} className="slider" id="ratio"></input>
                     <h3>Gradient Color 2</h3>
-                    <input type="color" value={this.state.gradient2} onChange={this.updateGradientTwo}></input>
+                    <input type="color" value={this.state.gradient2} onChange={this.updateValues} id="gradient2"></input>
                 </div>
             </React.Fragment>
         );

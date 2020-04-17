@@ -10,22 +10,11 @@ class PointTranslator extends BaseModule{
             xAmount: 25,
             yAmount: 25,
         }
-        this.changeX = this.changeX.bind(this);
-        this.changeY = this.changeY.bind(this);
         this.process = this.process.bind(this);
     }
 
     componentDidMount(){
         this.registerModule(this.props.moduleArray, this.props.moduleKey, this);
-    }
-
-    changeX(event){
-        this.setState({xAmount: event.target.value});
-        console.log("X value " + event.target.value);
-    }
-
-    changeY(event){
-        this.setState({yAmount: event.target.value});
     }
 
     render(){
@@ -35,13 +24,14 @@ class PointTranslator extends BaseModule{
                     <button onClick={() => this.props.removeFunction(this.props.moduleKey)}>X</button>
                     <h1>Point Translator Index: {this.props.moduleKey} Type: {this.type}</h1>
                     <h2>Translation Amount</h2>
-                    <input type="range" step="1" min="1" max="400" onChange={this.changeX} value={this.state.xAmount} className="slider" id="myRange"></input>
-                    <input type="range" step="1" min="1" max="400" onChange={this.changeY} value={this.state.yAmount} className="slider" id="myRange"></input>
+                    <input type="range" step="1" min="1" max="400" onChange={this.updateValues} value={this.state.xAmount} id="xAmount"></input>
+                    <input type="range" step="1" min="1" max="400" onChange={this.updateValues} value={this.state.yAmount} id="yAmount"></input>
                 </div>
             </React.Fragment>
         );
     }
 
+    //TODO add randomize option
     process(points){
         let xTranslation = this.state.xAmount;
         let yTranslation = this.state.yAmount;

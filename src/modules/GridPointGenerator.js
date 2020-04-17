@@ -9,15 +9,10 @@ class GridPointGenerator extends BaseModule{
         this.state = {
             points: 75,
         }
-        this.changePoints = this.changePoints.bind(this);
     }
 
     componentDidMount(){
         this.registerModule(this.props.moduleArray, this.props.moduleKey, this);
-    }
-
-    changePoints(event){
-        this.setState({points: event.target.value})
     }
 
     render(){
@@ -27,7 +22,7 @@ class GridPointGenerator extends BaseModule{
                     <button onClick={() => this.props.removeFunction(this.props.moduleKey)}>X</button>
                     <h1>Grid Point Generator Index: {this.props.moduleKey} Type: {this.type}</h1>
                     <h2>Point Density</h2>
-                    <input type="range" step="1" min="1" max="25" onChange={this.changePoints} value={this.state.points} className="slider" id="myRange"></input>
+                    <input type="range" step="1" min="1" max="25" onChange={this.updateValues} value={this.state.points}  id="points"></input>
                 </div>
             </React.Fragment>
         );

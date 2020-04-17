@@ -12,6 +12,12 @@ class BaseModule extends React.Component{
             outline: '1px solid black',
             padding: '10px'
         };
+
+        this.updateValues = this.updateValues.bind(this);
+    }
+
+    updateValues(event){
+        this.setState({[event.target.id]: event.target.value});
     }
 
     render(){
