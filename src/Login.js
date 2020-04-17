@@ -20,8 +20,6 @@ class Login extends React.Component{
   }
 
   async login(){
-    console.log("going to log in");
-
     let userName = this.state.user;
     let password = this.state.pass;
 
@@ -37,7 +35,6 @@ class Login extends React.Component{
             localStorage.setItem('pass', password);
             window.location.href="/profile"
         }
-        console.log(data.length)
     })
   }
 

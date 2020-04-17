@@ -12,21 +12,11 @@ class ArtWidget extends React.Component{
     };
   }
 
-  componentDidMount(){
-    let canvas = this.refs.artCanvas;
-    let ctx = canvas.getContext('2d');
-    console.log("in art widget, logging canvasData")
-    console.log(this.props.canvasData)
-    // ctx.putImageData(this.props.canvasData.data, 0, 0);
-    console.log(canvas);
-    // console.log(this.props.canvasData)
-  }
-
   render(){
     return (
         <React.Fragment>
             <canvas ref='artCanvas' width='400' height='400'></canvas>
-            <img src={this.props.canvasData}></img>
+            <img src={this.props.image}></img>
             <h1 style={this.style}> {this.props.text} </h1>
         </React.Fragment>
     );

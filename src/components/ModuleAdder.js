@@ -9,6 +9,7 @@ class ModuleAdder extends React.Component{
                 <button onClick={() => this.props.buttonFunction("gridPoint")}>Grid Point Generator</button>
                 <button onClick={() => this.props.buttonFunction("translator")}>Point Translator</button>
                 <button onClick={() => this.props.buttonFunction("circle")}>Circle Renderer</button>
+                <button onClick={() => this.props.buttonFunction("rectangle")}>Rectangle Renderer</button>
                 <button onClick={() => this.props.buttonFunction("strand")}>Strand Generator</button>
             </React.Fragment>
         );
