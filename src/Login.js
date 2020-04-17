@@ -21,7 +21,11 @@ class Login extends React.Component{
 
   async login(){
     console.log("going to log in");
-    const fetchPromise = fetch(`http://localhost:7000/getUser/?user=${this.state.user}&pass=${this.state.pass}`)
+
+    let userName = this.state.user;
+    let password = this.state.pass;
+
+    const fetchPromise = fetch(`http://localhost:7000/getUser/?user=${userName}&pass=${password}`)
     fetchPromise.then(response => {
         return response.json();
     }).then(data => {
@@ -29,7 +33,9 @@ class Login extends React.Component{
             this.setState({'message': "No Account Found"});
         }
         else{
-            window.location.href="/"
+            localStorage.setItem('user', userName);
+            localStorage.setItem('pass', password);
+            window.location.href="/profile"
         }
         console.log(data.length)
     })

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import ModuleAdder from './components/ModuleAdder.js'
 import ModuleViewer from './components/ModuleViewer.js'
 
@@ -20,6 +20,7 @@ class ArtGenerator extends React.Component{
     this.removeModule = this.removeModule.bind(this)
     this.testingArrayOfComponents = this.testingArrayOfComponents.bind(this)
     this.processModules = this.processModules.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
   }
 
   buttonFunction(){
@@ -87,6 +88,37 @@ class ArtGenerator extends React.Component{
     }
   }
 
+  //TODO do something with having to check for a username
+  uploadImage(){
+    console.log("uploading image");
+    let canvas = this.refs.canvas;
+    let ctx = canvas.getContext('2d');
+
+    let data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    // let data = canvas.toDataURL('image/png');
+    console.log(data);
+    let userName = localStorage.getItem('user');
+
+    const Data = {
+      name: 'my name',
+      image: 'image stuff',
+      data: data
+    }
+
+    const Options = {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(Data)
+    }
+
+    fetch(`http://localhost:7000/uploadArt/`, Options);
+
+    console.log(data);
+    console.log(userName);
+  }
+
   render(){
     return (
       <React.Fragment>
@@ -96,6 +128,7 @@ class ArtGenerator extends React.Component{
         <button onClick={this.clearModules.bind(this)}>Remove every module</button>
         <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
         <button onClick={this.processModules}>Process Every Active Module</button>
+        <button onClick={this.uploadImage}>Upload Image</button>
         <hr></hr>
         <ModuleAdder buttonFunction={this.addModule}/>
         <hr></hr>
