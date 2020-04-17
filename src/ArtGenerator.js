@@ -94,15 +94,15 @@ class ArtGenerator extends React.Component{
     let canvas = this.refs.canvas;
     let ctx = canvas.getContext('2d');
 
-    let data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    // let data = canvas.toDataURL('image/png');
+    // let data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let data = canvas.toDataURL('image/png');
     console.log(data);
+    console.log(ctx)
     let userName = localStorage.getItem('user');
 
     const Data = {
-      name: 'my name',
-      image: 'image stuff',
-      data: data
+      name: 'another name',
+      imageData: data
     }
 
     const Options = {
@@ -115,15 +115,16 @@ class ArtGenerator extends React.Component{
 
     fetch(`http://localhost:7000/uploadArt/`, Options);
 
-    console.log(data);
+    console.log(typeof data);
     console.log(userName);
   }
 
+  //TODO change canvas size back to 400x400
   render(){
     return (
       <React.Fragment>
         <h1> Image Generator Prototype </h1>
-        <canvas ref='canvas' width={400} height={400}></canvas>
+        <canvas ref='canvas' width={200} height={200}></canvas>
         <button onClick={this.buttonFunction.bind(this)}>Change canvas color</button>
         <button onClick={this.clearModules.bind(this)}>Remove every module</button>
         <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
