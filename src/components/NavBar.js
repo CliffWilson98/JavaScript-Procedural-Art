@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from 'reactstrap'
 
 class NavBar extends React.Component{
 
@@ -9,10 +10,10 @@ class NavBar extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <button onClick={() => this.goToNewPage('/')} id='create'>Create Art</button>
-                <button onClick={() => this.goToNewPage('browse')} id='browse'>Browse Art</button>
-                <button onClick={() => this.goToNewPage('login')} id='login'>Login/Signup</button>
-                <button onClick={() => this.goToNewPage('profile')} id='profile'>View Profile</button>
+                <Button onClick={() => this.goToNewPage('/')} id='create'>Create Art</Button>
+                <Button onClick={() => this.goToNewPage('browse')} id='browse'>Browse Art</Button>
+                <Button onClick={() => this.goToNewPage('login')} id='login'>Login/Signup</Button>
+                <Button onClick={() => this.goToNewPage('profile')} id='profile'>View Profile</Button>
             </React.Fragment>
         );
     }
