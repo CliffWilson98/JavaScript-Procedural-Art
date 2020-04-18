@@ -23,7 +23,7 @@ class Login extends React.Component{
     let userName = this.state.user;
     let password = this.state.pass;
 
-    const fetchPromise = fetch(`http://localhost:7000/getUser/?user=${userName}&pass=${password}`)
+    const fetchPromise = fetch(`https://secure-temple-85751.herokuapp.com/getUser/?user=${userName}&pass=${password}`)
     fetchPromise.then(response => {
         return response.json();
     }).then(data => {

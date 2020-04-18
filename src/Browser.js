@@ -11,7 +11,6 @@ class Browser extends React.Component{
   }
 
   componentDidMount(){
-    // const uploadedArt = fetch(`http://localhost:7000/getArt`)
     const uploadedArt = fetch('https://secure-temple-85751.herokuapp.com/getArt')
     .then(response => {
         return response.json();

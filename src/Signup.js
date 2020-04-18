@@ -19,7 +19,7 @@ class Signup extends React.Component{
   }
 
   signup(){
-    fetch(`http://localhost:7000/insertUser/?user=${this.state.user}&pass=${this.state.pass}`, {mode: 'no-cors'});
+    fetch(`https://secure-temple-85751.herokuapp.com/insertUser/?user=${this.state.user}&pass=${this.state.pass}`)
   }
 
   render(){
