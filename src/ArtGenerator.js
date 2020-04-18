@@ -103,7 +103,9 @@ class ArtGenerator extends React.Component{
       body: JSON.stringify(Data)
     }
 
-    fetch(`http://localhost:7000/uploadArt/`, Options);
+    // fetch(`http://localhost:7000/uploadArt/`, Options);
+    fetch('https://secure-temple-85751.herokuapp.com/uploadArt', Options)
+    
   }
 
   //TODO change canvas size back to 400x400
