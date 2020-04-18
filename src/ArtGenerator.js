@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import ModuleAdder from './components/ModuleAdder.js'
 import ModuleViewer from './components/ModuleViewer.js'
+import NavBar from './components/NavBar.js'
 
 //TODO MAJOR BUG: whenever deleting a module, all modules that come after it are 
 //reset to their default values. This is because Javascript re creates the object when it is put into a new index.
@@ -110,6 +111,7 @@ class ArtGenerator extends React.Component{
   render(){
     return (
       <React.Fragment>
+        <NavBar/>
         <h1> Image Generator Prototype </h1>
         <canvas ref='canvas' width={400} height={400}></canvas>
         <button onClick={this.clearModules.bind(this)}>Remove every module</button>

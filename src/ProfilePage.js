@@ -1,4 +1,5 @@
 import React from 'react';
+import NavBar from './components/NavBar.js'
 
 class ProfilePage extends React.Component{
 
@@ -23,6 +24,7 @@ class ProfilePage extends React.Component{
   render(){
     return (
         <React.Fragment>
+            <NavBar/>
             <h1> this is the profile page </h1>
             <h2>username: {this.state.user}</h2>
         </React.Fragment>

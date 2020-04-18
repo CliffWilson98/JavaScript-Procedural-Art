@@ -1,4 +1,5 @@
 import React from 'react';
+import NavBar from './components/NavBar.js';
 
 class Login extends React.Component{
 
@@ -41,6 +42,7 @@ class Login extends React.Component{
   render(){
     return (
         <React.Fragment>
+            <NavBar/>
             <h1> Login to your account!</h1>
             <label for="fname">UserName</label>
             <input type="text" id="fname" name="user" value={this.user} onChange={this.updateState}></input><br></br>
