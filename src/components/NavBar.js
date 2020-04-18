@@ -10,10 +10,10 @@ class NavBar extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <Button onClick={() => this.goToNewPage('/')} id='create'>Create Art</Button>
-                <Button onClick={() => this.goToNewPage('browse')} id='browse'>Browse Art</Button>
-                <Button onClick={() => this.goToNewPage('login')} id='login'>Login/Signup</Button>
-                <Button onClick={() => this.goToNewPage('profile')} id='profile'>View Profile</Button>
+                <Button color="light" onClick={() => this.goToNewPage('/')} id='create'>Create Art</Button>
+                <Button color="light" onClick={() => this.goToNewPage('browse')} id='browse'>Browse Art</Button>
+                <Button color="light" onClick={() => this.goToNewPage('login')} id='login'>Login/Signup</Button>
+                <Button color="light" onClick={() => this.goToNewPage('profile')} id='profile'>View Profile</Button>
             </React.Fragment>
         );
     }
