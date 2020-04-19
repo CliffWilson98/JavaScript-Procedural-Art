@@ -18,6 +18,7 @@ class BaseModule extends React.Component{
 
     updateValues(event){
         this.setState({[event.target.id]: event.target.value});
+        this.props.updateMethod();
     }
 
     render(){

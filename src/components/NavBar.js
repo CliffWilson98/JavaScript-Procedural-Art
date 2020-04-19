@@ -11,6 +11,8 @@ class NavBar extends React.Component{
         return(
             <React.Fragment>
                 <div class="text-center">
+                    <h1> Procedural Art Generator</h1>
+                    <hr></hr>
                     <Button color="light" onClick={() => this.goToNewPage('/')} id='create'>Create Art</Button>
                     <Button color="light" onClick={() => this.goToNewPage('browse')} id='browse'>Browse Art</Button>
                     <Button color="light" onClick={() => this.goToNewPage('login')} id='login'>Login/Signup</Button>

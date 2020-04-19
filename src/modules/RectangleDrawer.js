@@ -16,15 +16,10 @@ class RectangleDrawer extends BaseModule{
 
         this.process = this.process.bind(this);
         this.registerModule = this.registerModule.bind(this)
-        this.updateValues = this.updateValues.bind(this);
     }
 
     componentDidMount(){
         this.registerModule(this.props.moduleArray, this.props.moduleKey, this);
-    }
-
-    updateValues(event){
-        this.setState({[event.target.id]: event.target.value});
     }
 
     render(){

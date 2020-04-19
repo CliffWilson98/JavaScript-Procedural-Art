@@ -5,6 +5,7 @@ import NavBar from './components/NavBar.js'
 
 //TODO MAJOR BUG: whenever deleting a module, all modules that come after it are 
 //reset to their default values. This is because Javascript re creates the object when it is put into a new index.
+//TODO to fix previous bug I need to use a linked list instead or write the object to json and reconstruct it
 class ArtGenerator extends React.Component{
 
   constructor(props){
@@ -13,8 +14,6 @@ class ArtGenerator extends React.Component{
     this.state = {
       activeModules: []
     }
-
-    this.testArray = []
 
     this.addModule = this.addModule.bind(this)
     this.clearModules = this.clearModules.bind(this)
@@ -107,24 +106,22 @@ class ArtGenerator extends React.Component{
     fetch('https://secure-temple-85751.herokuapp.com/uploadArt', Options)
   }
 
-  //TODO change canvas size back to 400x400
   render(){
     return (
       <React.Fragment>
-          <NavBar/>
+        <NavBar/>
         <hr></hr>
         <div class="text-center">
-          <h1> Procedural Art Generator</h1>
           <canvas ref='canvas' width={400} height={400}></canvas>
-        <hr></hr>
-        <button onClick={this.clearModules.bind(this)}>Remove every module</button>
-        <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
-        <button onClick={this.processModules}>Process Every Active Module</button>
-        <button onClick={this.uploadImage}>Upload Image</button>
-        <hr></hr>
-        <ModuleAdder buttonFunction={this.addModule}/>
-        <hr></hr>
-        <ModuleViewer modules={this.state.activeModules} removeFunction={this.removeModule}/>
+          <hr></hr>
+          <button onClick={this.clearModules.bind(this)}>Remove every module</button>
+          <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
+          <button onClick={this.processModules}>Process Every Active Module</button>
+          <button onClick={this.uploadImage}>Upload Image</button>
+          <hr></hr>
+          <ModuleAdder buttonFunction={this.addModule}/>
+          <hr></hr>
+          <ModuleViewer modules={this.state.activeModules} updateMethod={this.processModules} removeFunction={this.removeModule}/>
         </div>
       </React.Fragment>
     );
