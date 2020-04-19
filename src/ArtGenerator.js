@@ -21,6 +21,7 @@ class ArtGenerator extends React.Component{
     this.testingArrayOfComponents = this.testingArrayOfComponents.bind(this)
     this.processModules = this.processModules.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
+    this.registerModule = this.registerModule.bind(this);
   }
 
   addModule(moduleType){
@@ -41,8 +42,6 @@ class ArtGenerator extends React.Component{
         modules.splice(i, 1)
       }
     }
-    console.log("about to set state, this is what the new module is ")
-    console.log(modules);
     this.setState(() => ({
         activeModules: modules
       }))
@@ -52,6 +51,15 @@ class ArtGenerator extends React.Component{
     this.setState(prevState => ({
         activeModules: []
       }))
+  }
+
+  registerModule(module){
+    let moduleArray = this.state.activeModules;
+    for (let i = 0; i <  moduleArray.length; i ++){
+        if (moduleArray[i].key == module.key){
+            moduleArray[i].module = module;
+        }
+    }
   }
 
   logModules(){
@@ -65,7 +73,6 @@ class ArtGenerator extends React.Component{
     ctx.fillRect(0, 0, 400, 400);
 
     let modules = this.state.activeModules; 
-    console.log(modules)
     let output = null;
 
     if(modules.length != 0){
@@ -75,7 +82,6 @@ class ArtGenerator extends React.Component{
         output = modules[i].module.process(output);
       }
 
-      console.log(output);
       //TODO need to add a check for if this is valid image data or not
       ctx.putImageData(output, 0, 0);
     }
@@ -121,7 +127,7 @@ class ArtGenerator extends React.Component{
           <hr></hr>
           <ModuleAdder buttonFunction={this.addModule}/>
           <hr></hr>
-          <ModuleViewer modules={this.state.activeModules} updateMethod={this.processModules} removeFunction={this.removeModule}/>
+          <ModuleViewer modules={this.state.activeModules} updateMethod={this.processModules} removeFunction={this.removeModule} artGen={this}/>
         </div>
       </React.Fragment>
     );

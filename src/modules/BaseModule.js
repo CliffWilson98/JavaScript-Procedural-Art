@@ -4,8 +4,7 @@ class BaseModule extends React.Component{
 
     constructor(props){
         super(props);
-        this.type = this.props.type;
-        this.registerModule = this.registerModule.bind(this);
+        this.key = this.props.moduleKey;
 
         this.moduleStyle = {
             display: 'inline-block',
@@ -16,22 +15,17 @@ class BaseModule extends React.Component{
         this.updateValues = this.updateValues.bind(this);
     }
 
+    componentDidMount(){
+        this.props.artGen.registerModule(this)
+    }
+
     updateValues(event){
         this.setState({[event.target.id]: event.target.value});
-        this.props.updateMethod();
+        this.props.artGen.processModules();
     }
 
     render(){
         return <h1> Generic Type: {this.type}</h1>
-    }
-
-    registerModule(moduleArray, moduleKey, moduleToRegister){
-        console.log("registering");
-        for (let i = 0; i <  moduleArray.length; i ++){
-            if (moduleArray[i].key == moduleKey){
-                moduleArray[i].module = moduleToRegister;
-            }
-        }
     }
 }
 

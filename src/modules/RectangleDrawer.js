@@ -15,20 +15,14 @@ class RectangleDrawer extends BaseModule{
         }
 
         this.process = this.process.bind(this);
-        this.registerModule = this.registerModule.bind(this)
-    }
-
-    componentDidMount(){
-        this.registerModule(this.props.moduleArray, this.props.moduleKey, this);
     }
 
     render(){
         return(
             <React.Fragment>
                 <div style={this.moduleStyle}>
-                    <button onClick={() => this.props.removeFunction(this.props.moduleKey)}>X</button>
-                    <h1>Rectangle Drawer Index: {this.props.moduleKey}</h1>
-                    <h1>Type: {this.type}</h1>
+                    <button onClick={() => this.props.artGen.removeModule(this.props.moduleKey)}>X</button>
+                    <h1>Rectangle Drawer</h1>
                     <h3>Width</h3>
                     <input type="range" step="1" min="1" max="50" onChange={this.updateValues} value={this.state.width} className="width" id="width"></input>
                     <h3>Height</h3>

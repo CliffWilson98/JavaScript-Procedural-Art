@@ -13,16 +13,12 @@ class PointTranslator extends BaseModule{
         this.process = this.process.bind(this);
     }
 
-    componentDidMount(){
-        this.registerModule(this.props.moduleArray, this.props.moduleKey, this);
-    }
-
     render(){
         return(
             <React.Fragment>
                 <div style={this.moduleStyle}>
-                    <button onClick={() => this.props.removeFunction(this.props.moduleKey)}>X</button>
-                    <h1>Point Translator Index: {this.props.moduleKey} Type: {this.type}</h1>
+                    <button onClick={() => this.props.artGen.removeModule(this.props.moduleKey)}>X</button>
+                    <h1>Point Translator</h1>
                     <h2>Translation Amount</h2>
                     <input type="range" step="1" min="1" max="400" onChange={this.updateValues} value={this.state.xAmount} id="xAmount"></input>
                     <input type="range" step="1" min="1" max="400" onChange={this.updateValues} value={this.state.yAmount} id="yAmount"></input>

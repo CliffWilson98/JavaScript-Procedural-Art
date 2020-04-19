@@ -11,16 +11,12 @@ class PointGenerator extends BaseModule{
         }
     }
 
-    componentDidMount(){
-        this.registerModule(this.props.moduleArray, this.props.moduleKey, this);
-    }
-
     render(){
         return(
             <React.Fragment>
                 <div style={this.moduleStyle}>
-                    <button onClick={() => this.props.removeFunction(this.props.moduleKey)}>X</button>
-                    <h1>Point Generator Index: {this.props.moduleKey} Type: {this.type}</h1>
+                    <button onClick={() => this.props.artGen.removeModule(this.props.moduleKey)}>X</button>
+                    <h1>Point Generator</h1>
                     <h2>Number of points</h2>
                     <input type="range" step="1" min="1" max="100" onChange={this.updateValues} value={this.state.points} id="points"></input>
                 </div>

@@ -7,23 +7,22 @@ import RectangleDrawer from '../modules/RectangleDrawer.js';
 
 class ModuleViewer extends React.Component{
 
-    //TODO maybe get rid of having to pass all of these duplicate values to the modules
     render(){
         return this.props.modules.map((module) =>{
             if (module.type == "point"){
-                return <PointGenerator type="point module" moduleKey={module.key} removeFunction={this.props.removeFunction} moduleArray={this.props.modules} updateMethod={this.props.updateMethod}/>
+                return <PointGenerator moduleKey={module.key} artGen={this.props.artGen}/>
             }
             else if (module.type == "gridPoint"){
-                return <GridPointGenerator type="grid point module" moduleKey={module.key} removeFunction={this.props.removeFunction} moduleArray={this.props.modules} updateMethod={this.props.updateMethod}/>
+                return <GridPointGenerator moduleKey={module.key} artGen={this.props.artGen}/>
             }
             else if (module.type == "translator"){
-                return <PointTranslator type="translator module" moduleKey={module.key} removeFunction={this.props.removeFunction} moduleArray={this.props.modules}/>
+                return <PointTranslator moduleKey={module.key} artGen={this.props.artGen}/>
             }
             else if (module.type == "circle"){
-                return <CircleDrawer type="circle module" moduleKey={module.key} removeFunction={this.props.removeFunction} moduleArray={this.props.modules} updateMethod={this.props.updateMethod}/>
+                return <CircleDrawer moduleKey={module.key} artGen={this.props.artGen}/>
             }
             else if (module.type == "rectangle"){
-                return <RectangleDrawer type="rectangle module" moduleKey={module.key} removeFunction={this.props.removeFunction} moduleArray={this.props.modules}/>
+                return <RectangleDrawer moduleKey={module.key} artGen={this.props.artGen}/>
             }
             return <h1> not a module </h1>
         });
