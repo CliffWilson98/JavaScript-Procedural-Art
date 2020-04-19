@@ -111,9 +111,12 @@ class ArtGenerator extends React.Component{
   render(){
     return (
       <React.Fragment>
-        <NavBar/>
-        <h1> Image Generator Prototype </h1>
-        <canvas ref='canvas' width={400} height={400}></canvas>
+          <NavBar/>
+        <hr></hr>
+        <div class="text-center">
+          <h1> Procedural Art Generator</h1>
+          <canvas ref='canvas' width={400} height={400}></canvas>
+        <hr></hr>
         <button onClick={this.clearModules.bind(this)}>Remove every module</button>
         <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
         <button onClick={this.processModules}>Process Every Active Module</button>
@@ -122,6 +125,7 @@ class ArtGenerator extends React.Component{
         <ModuleAdder buttonFunction={this.addModule}/>
         <hr></hr>
         <ModuleViewer modules={this.state.activeModules} removeFunction={this.removeModule}/>
+        </div>
       </React.Fragment>
     );
   }
