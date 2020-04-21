@@ -93,7 +93,7 @@ class ArtGenerator extends React.Component{
     let canvas = this.refs.canvas;
     let ctx = canvas.getContext('2d');
 
-    let data = canvas.toDataURL('image/png');
+    let data = canvas.toDataURL('image/jpeg');
     let userName = localStorage.getItem('user');
 
     const Data = {
