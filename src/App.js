@@ -1,6 +1,5 @@
 import React from 'react';
 import ArtGenerator from './ArtGenerator.js'
-import Signup from './Signup.js'
 import Login from './Login.js'
 import ProfilePage from './ProfilePage.js'
 import BrowseArtPage from './BrowseArtPage.js'
@@ -19,7 +18,6 @@ class App extends React.Component{
     return (
       <Router>
         <Route exact path="/" component={ArtGenerator}/>
-        <Route exact path="/signup" component={Signup}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/profile" component={ProfilePage}/>
         <Route exact path="/browse" component={BrowseArtPage}/>

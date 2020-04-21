@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseModule from './BaseModule'
+import { Button } from 'reactstrap'
 
 class TrigPointGenerator extends BaseModule{
 
@@ -20,26 +21,34 @@ class TrigPointGenerator extends BaseModule{
         return(
             <React.Fragment>
                 <div style={this.moduleStyle}>
-                    <button onClick={() => this.props.artGen.removeModule(this.props.moduleKey)}>X</button>
+                    <Button color="danger" onClick={() => this.props.artGen.removeModule(this.props.moduleKey)}>Remove</Button>
                     <h1>Trig Point Generator</h1>
                     <h2>Seed</h2>
                     <input type="number" value={this.state.seed} onChange={this.updateValues} id="seed"></input>
-                    <h2>X</h2>
-                    <form>
-                        <select name = "x" onChange={this.updateValues} value={this.state.x} id="x">
-                            <option value = "sin" selected>Sin</option>
-                            <option value = "cos">Cos</option>
-                            <option value = "tan">Tan</option>
-                        </select>
-                    </form>
-                    <h2>Y</h2>
-                    <form>
-                        <select name = "y" onChange={this.updateValues} value={this.state.y} id="y">
-                            <option value = "sin" selected>Sin</option>
-                            <option value = "cos">Cos</option>
-                            <option value = "tan">Tan</option>
-                        </select>
-                    </form>
+                    <hr></hr>
+                    <div class="row">
+                        <div class="col-sm">
+                            <h2>X</h2>
+                            <form>
+                                <select name = "x" onChange={this.updateValues} value={this.state.x} id="x">
+                                    <option value = "sin" selected>Sin</option>
+                                    <option value = "cos">Cos</option>
+                                    <option value = "tan">Tan</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="col-sm">
+                            <h2>Y</h2>
+                            <form>
+                                <select name = "y" onChange={this.updateValues} value={this.state.y} id="y">
+                                    <option value = "sin" selected>Sin</option>
+                                    <option value = "cos">Cos</option>
+                                    <option value = "tan">Tan</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                    <hr></hr>
                     <h2>Amplitude</h2>
                     <input type="number" value={this.state.amplitude} onChange={this.updateValues} id="amplitude"></input>
                     <h2>Number of points</h2>
