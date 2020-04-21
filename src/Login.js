@@ -51,7 +51,6 @@ class Login extends React.Component{
     return (
         <React.Fragment>
             <NavBar/>
-            <hr></hr>
             <div class="text-center">
               <h1> Login to your account</h1>
               <label for="fname">UserName</label>

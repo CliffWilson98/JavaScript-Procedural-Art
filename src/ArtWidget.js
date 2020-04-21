@@ -15,9 +15,9 @@ class ArtWidget extends React.Component{
   render(){
     return (
         <React.Fragment>
-            <canvas ref='artCanvas' width='400' height='400'></canvas>
+          <div style={this.style}>
             <img src={this.props.image}></img>
-            <h1 style={this.style}> {this.props.text} </h1>
+          </div>
         </React.Fragment>
     );
   }

@@ -96,10 +96,15 @@ class ArtGenerator extends React.Component{
     let data = canvas.toDataURL('image/jpeg');
     let userName = localStorage.getItem('user');
 
+    const user = localStorage.getItem('user');
+
     const Data = {
       name: 'another name',
-      imageData: data
+      imageData: data,
+      user: localStorage.getItem('user')
     }
+
+    console.log(Data)
 
     const Options = {
       method: 'POST', 
@@ -116,7 +121,6 @@ class ArtGenerator extends React.Component{
     return (
       <React.Fragment>
         <NavBar/>
-        <hr></hr>
         <div class="text-center">
           <canvas ref='canvas' width={400} height={400}></canvas>
           <hr></hr>
