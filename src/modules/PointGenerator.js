@@ -31,12 +31,6 @@ class PointGenerator extends BaseModule{
         let pointArray = [];
         let seed = this.state.seed;
         for (let i = 0; i < this.state.points; i++){
-            //TODO save this, for maybe a circle point generator
-            // let x = Math.sin(seed + i) * 100;
-            // let y = Math.cos(seed + i) * 100;
-            // let x = Math.abs((Math.sin(seed + i * 750)) * 400);
-            // let y = Math.abs((Math.sin(seed + i * 250)) * 400);
-
             let x = Math.abs((Math.sin(seed + i * .349)) * 400);
             let y = Math.abs((Math.sin(seed + i)) * 400);
             pointArray.push({x: x, y: y});

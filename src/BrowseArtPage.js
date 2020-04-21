@@ -10,6 +10,7 @@ class BrowseArtPage extends React.Component{
     this.state = {
       'art': []
     }
+
   }
 
   componentDidMount(){
@@ -23,14 +24,27 @@ class BrowseArtPage extends React.Component{
   }
 
   render(){
-    return (
-        <React.Fragment>
-            <NavBar/>
-            <div style={{'text-align': 'center'}}>
-              <Browser art={this.state.art}/>
-            </div>
-        </React.Fragment>
-    );
+    if (this.state.art.length != 0){
+      return (
+          <React.Fragment>
+              <NavBar/>
+              <div style={{'text-align': 'center'}}>
+                <Browser art={this.state.art}/>
+              </div>
+          </React.Fragment>
+      );
+    }
+    else{
+      return (
+          <React.Fragment>
+              <NavBar/>
+              <div style={{'text-align': 'center'}}>
+                <h2>Loading images...</h2>
+              </div>
+          </React.Fragment>
+      );
+      
+    }
   }
 }
 

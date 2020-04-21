@@ -12,7 +12,8 @@ class ArtGenerator extends React.Component{
     super(props);
     this.id = 0;
     this.state = {
-      activeModules: []
+      activeModules: [],
+      backgroundColor: '#EEEEEE'
     }
 
     this.addModule = this.addModule.bind(this)
@@ -22,6 +23,11 @@ class ArtGenerator extends React.Component{
     this.processModules = this.processModules.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
     this.registerModule = this.registerModule.bind(this);
+    this.changeBackgroundColor = this.changeBackgroundColor.bind(this);
+  }
+
+  changeBackgroundColor(event){
+    this.setState({backgroundColor: event.target.value});
   }
 
   addModule(moduleType){
@@ -67,36 +73,33 @@ class ArtGenerator extends React.Component{
   }
 
   processModules(){
+    console.log("background color is ");
+    console.log(this.state.backgroundColor);
     let canvas = this.refs.canvas;
     let ctx = canvas.getContext('2d');
-    ctx.fillStyle = "#ABABAB"
+    ctx.fillStyle = this.state.backgroundColor;
     ctx.fillRect(0, 0, 400, 400);
 
     let modules = this.state.activeModules; 
     let output = null;
 
-    if(modules.length != 0){
-      let output = modules[0].module.process()
+    // if(modules.length != 0){
+    //   let output = modules[0].module.process()
 
-      for (let i=1; i < modules.length; i ++){
-        output = modules[i].module.process(output);
-      }
+    //   for (let i=1; i < modules.length; i ++){
+    //     output = modules[i].module.process(output);
+    //   }
 
-      //TODO need to add a check for if this is valid image data or not
-      ctx.putImageData(output, 0, 0);
-    }
+    //   //TODO need to add a check for if this is valid image data or not
+    //   ctx.putImageData(output, 0, 0);
+    // }
   }
 
   //TODO do something with having to check for a username
-  uploadImage(){
+  async uploadImage(){
     console.log("uploading image");
     let canvas = this.refs.canvas;
-    let ctx = canvas.getContext('2d');
-
     let data = canvas.toDataURL('image/jpeg');
-    let userName = localStorage.getItem('user');
-
-    const user = localStorage.getItem('user');
 
     const Data = {
       name: 'another name',
@@ -123,6 +126,9 @@ class ArtGenerator extends React.Component{
         <NavBar/>
         <div class="text-center">
           <canvas ref='canvas' width={400} height={400}></canvas>
+          <hr></hr>
+          <h5> Background Color </h5>
+          <input type="color" value={this.state.backgroundColor} onChange={this.changeBackgroundColor}></input>
           <hr></hr>
           <button onClick={this.clearModules.bind(this)}>Remove every module</button>
           <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
