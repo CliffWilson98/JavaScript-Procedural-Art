@@ -40,7 +40,7 @@ class RectangleDrawer extends BaseModule{
     //TODO fix linear gradient
     process(info){
         let ctx = info.ctx
-        let points = info.points;
+        let points = info.result;
 
         let width = this.state.width;
         let height = this.state.height;

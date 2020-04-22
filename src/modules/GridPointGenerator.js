@@ -24,7 +24,7 @@ class GridPointGenerator extends BaseModule{
         );
     }
 
-    process(){
+    process(info){
         let pointGrid = [];
         let points = this.state.points;
         let pointSpacingX = 400 / points
@@ -35,7 +35,9 @@ class GridPointGenerator extends BaseModule{
                 pointGrid.push({x: x * pointSpacingX, y : y * pointSpacingY});
             }
         }
-        return pointGrid;
+
+        info.result = pointGrid;
+        return info;
     }
 }
 

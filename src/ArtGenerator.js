@@ -116,9 +116,12 @@ class ArtGenerator extends React.Component{
       body: JSON.stringify(Data)
     }
 
+    //TODO make sure this then statement works
     fetch('https://secure-temple-85751.herokuapp.com/uploadArt', Options)
+    .then(
+      console.log("uploaded successfully")
+    )
 
-    console.log('uploaded')
   }
 
   render(){

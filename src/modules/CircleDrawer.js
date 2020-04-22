@@ -33,7 +33,7 @@ class CircleDrawer extends BaseModule{
 
     process(info){
 
-        let points = info.points;
+        let points = info.result;
         let ctx = info.ctx;
         for (let i = 0; i < points.length; i++){
             let point = points[i];

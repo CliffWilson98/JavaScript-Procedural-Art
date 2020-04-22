@@ -36,7 +36,7 @@ class PointGenerator extends BaseModule{
             pointArray.push({x: x, y: y});
         }
 
-        info.points = pointArray;
+        info.result = pointArray;
         return info;
         // return {'result': pointArray, 'ctx': ctx};
     }

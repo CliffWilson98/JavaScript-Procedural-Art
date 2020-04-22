@@ -58,7 +58,7 @@ class TrigPointGenerator extends BaseModule{
         );
     }
 
-    process(){
+    process(info){
         let pointArray = [];
         let seed = this.state.seed;
         let amp = this.state.amplitude
@@ -81,7 +81,9 @@ class TrigPointGenerator extends BaseModule{
 
             pointArray.push({x: x, y: y});
         }
-        return pointArray;
+
+        info.result = pointArray;
+        return info;
     }
 }
 
