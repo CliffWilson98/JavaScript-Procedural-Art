@@ -81,25 +81,24 @@ class ArtGenerator extends React.Component{
     ctx.fillRect(0, 0, 400, 400);
 
     let modules = this.state.activeModules; 
-    let output = null;
 
-    // if(modules.length != 0){
-    //   let output = modules[0].module.process()
+    let info = {'ctx': ctx};
 
-    //   for (let i=1; i < modules.length; i ++){
-    //     output = modules[i].module.process(output);
-    //   }
+    if(modules.length != 0){
+      let output = modules[0].module.process(info)
 
-    //   //TODO need to add a check for if this is valid image data or not
-    //   ctx.putImageData(output, 0, 0);
-    // }
+      for (let i=1; i < modules.length; i ++){
+        output = modules[i].module.process(output);
+      }
+
+    }
   }
 
   //TODO do something with having to check for a username
   async uploadImage(){
     console.log("uploading image");
     let canvas = this.refs.canvas;
-    let data = canvas.toDataURL('image/jpeg');
+    let data = canvas.toDataURL('image/png');
 
     const Data = {
       name: 'another name',
@@ -118,6 +117,8 @@ class ArtGenerator extends React.Component{
     }
 
     fetch('https://secure-temple-85751.herokuapp.com/uploadArt', Options)
+
+    console.log('uploaded')
   }
 
   render(){

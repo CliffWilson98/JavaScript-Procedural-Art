@@ -27,7 +27,7 @@ class PointGenerator extends BaseModule{
         );
     }
 
-    process(){
+    process(info){
         let pointArray = [];
         let seed = this.state.seed;
         for (let i = 0; i < this.state.points; i++){
@@ -35,7 +35,10 @@ class PointGenerator extends BaseModule{
             let y = Math.abs((Math.sin(seed + i)) * 400);
             pointArray.push({x: x, y: y});
         }
-        return pointArray;
+
+        info.points = pointArray;
+        return info;
+        // return {'result': pointArray, 'ctx': ctx};
     }
 }
 

@@ -31,12 +31,10 @@ class CircleDrawer extends BaseModule{
         );
     }
 
-    process(points){
-        let c = document.createElement('canvas');
-        c.width = 400;
-        c.height = 400;
-        let ctx = c.getContext('2d');
+    process(info){
 
+        let points = info.points;
+        let ctx = info.ctx;
         for (let i = 0; i < points.length; i++){
             let point = points[i];
             let gradient = ctx.createRadialGradient(point.x, point.y, 20, point.x + 20, point.y + 20, 2 * Math.PI);
@@ -49,7 +47,7 @@ class CircleDrawer extends BaseModule{
             ctx.fill();
         }
 
-        return ctx.getImageData(0, 0, c.width, c.height)
+        return info;
     }
 }
 

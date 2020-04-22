@@ -38,11 +38,9 @@ class RectangleDrawer extends BaseModule{
     }
 
     //TODO fix linear gradient
-    process(points){
-        let c = document.createElement('canvas');
-        c.width = 400;
-        c.height = 400;
-        let ctx = c.getContext('2d');
+    process(info){
+        let ctx = info.ctx
+        let points = info.points;
 
         let width = this.state.width;
         let height = this.state.height;
@@ -61,7 +59,7 @@ class RectangleDrawer extends BaseModule{
             ctx.fill();
         }
 
-        return ctx.getImageData(0, 0, c.width, c.height)
+        return info;
     }
 }
 
