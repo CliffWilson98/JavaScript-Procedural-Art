@@ -12,6 +12,7 @@ class ProfilePage extends React.Component{
     }
 
     this.getUserArt = this.getUserArt.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   //TODO should maybe add another request to check the validity of the user
@@ -25,6 +26,12 @@ class ProfilePage extends React.Component{
       }
 
       this.getUserArt();
+  }
+
+  logout(){
+    console.log("logout button presed")
+    window.localStorage.removeItem('user')
+    window.location.href = 'login'
   }
 
   getUserArt(){
@@ -47,6 +54,8 @@ class ProfilePage extends React.Component{
             <div style={{'text-align': 'center'}}>
               <h1> Browse your art </h1>
               <h2>username: {this.state.user}</h2>
+              <button onClick={this.logout}>Logout</button>
+              <hr></hr>
               <Browser art={this.state.userArt}/>
             </div>
         </React.Fragment>

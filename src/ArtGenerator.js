@@ -84,13 +84,17 @@ class ArtGenerator extends React.Component{
 
     let info = {'ctx': ctx};
 
-    if(modules.length != 0){
-      let output = modules[0].module.process(info)
+    try{
+      if(modules.length != 0){
+        let output = modules[0].module.process(info)
 
-      for (let i=1; i < modules.length; i ++){
-        output = modules[i].module.process(output);
+        for (let i=1; i < modules.length; i ++){
+          output = modules[i].module.process(output);
+        }
       }
-
+    }
+    catch {
+      console.log("Invalid Module Combination")
     }
   }
 
@@ -135,8 +139,8 @@ class ArtGenerator extends React.Component{
           <input type="color" value={this.state.backgroundColor} onChange={this.changeBackgroundColor}></input>
           <hr></hr>
           <button onClick={this.clearModules.bind(this)}>Remove every module</button>
-          <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
-          <button onClick={this.processModules}>Process Every Active Module</button>
+          {/* <button onClick={this.logModules.bind(this)}>Click To Log Modules</button>
+          <button onClick={this.processModules}>Process Every Active Module</button> */}
           <button onClick={this.uploadImage}>Upload Image</button>
           <hr></hr>
           <ModuleAdder buttonFunction={this.addModule}/>
